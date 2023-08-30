@@ -12,7 +12,7 @@
           <th></th>
         </thead>
         <tbody>
-          <% figurines?.map(figurine => { %>
+          <% for (const figurine of figurines) { %>
             <tr>
               <td>
                 <img
@@ -30,10 +30,10 @@
               </td>
   
               <td>
-                <a href="/bookmarks/delete/<%= figurine.id %>">Enlever de la liste</a>
+                <a href="/favorites/delete/<%= figurine.id %>">Enlever de la liste</a>
               </td>
             </tr>
-          <% }) %>
+          <% } %>
         </tbody>
       </table>
 

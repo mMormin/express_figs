@@ -1,21 +1,23 @@
-const express = require('express');
+const express = require("express");
 
-const homeController = require('./controllers/homeController');
-const figurineController = require('./controllers/figurineController');
-const bookmarkController = require('./controllers/bookmarkController');
+const homeController = require("./controllers/homeController");
+const figurineController = require("./controllers/figurineController");
+const favoriteController = require("./controllers/favoriteController");
 
 const router = express.Router();
 
-router.get('/', homeController.homePage);
-router.get('/figurine/:name/:id', figurineController.articlePage);
+// Defaults Routes
+router.get("/", homeController.homePage);
+router.get("/figurine/:name/:id", figurineController.articlePage);
 
-// bookmarks
-router.get('/bookmarks', bookmarkController.bookmarksPage);
-router.get('/bookmarks/add/:id', bookmarkController.addBookmark);
-router.get('/bookmarks/delete/:id', bookmarkController.deleteBookmark);
+// Favorite Routes
+router.get("/favorites", favoriteController.favoritePage);
+router.get("/favorites/add/:id", favoriteController.addFavorite);
+router.get("/favorites/delete/:id", favoriteController.deleteFavorite);
 
+// Other Routes
 router.use("*", (req, res) => {
-    res.render("404");
-  });
+  res.render("404");
+});
 
 module.exports = router;
