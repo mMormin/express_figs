@@ -1,20 +1,11 @@
-const path = require('path');
-
 const mainController = {
-
-  // méthode pour la page d'accueil
-  homePage: (request, response) => {
-    const filePath = path.resolve(__dirname + '/../../integration/accueil.html');
-    response.sendFile(filePath);
+  homePage: (req, res ) => {
+    res.status(200).render("home");
   },
 
-  // méthode pour la page article
-  articlePage: (request, response) => {
-    const filePath = path.resolve(__dirname + '/../../integration/article.html');
-    response.sendFile(filePath);
-  }
-
+  articlePage: (req, res) => {
+    res.status(200).render("article");
+  },
 };
-
 
 module.exports = mainController;
