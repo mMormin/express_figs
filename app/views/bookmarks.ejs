@@ -12,7 +12,7 @@
           <th></th>
         </thead>
         <tbody>
-          <% for (const figurine of figurines) {%>
+          <% figurines?.map(figurine => { %>
             <tr>
               <td>
                 <img
@@ -33,28 +33,7 @@
                 <a href="/bookmarks/delete/<%= figurine.id %>">Enlever de la liste</a>
               </td>
             </tr>
-          <% } %>
-
-          <tr>
-            <td>
-              <img
-                class="img-thumbnail img-cart-list"
-                src="./images/cloud.png"
-                alt=""
-              />
-              <div class="item-description">
-                <h5 class="item-title">Cloud</h5>
-              </div>
-            </td>
-
-            <td>
-              <p class="item-subtotal">$49.98</p>
-            </td>
-
-            <td>
-              <a href="#">Enlever de la liste</a>
-            </td>
-          </tr>
+          <% }) %>
         </tbody>
       </table>
 

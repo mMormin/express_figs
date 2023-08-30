@@ -1,39 +1,46 @@
-const figurineDataMapper = require('../models/figurineDataMapper');
+const figurineDataMapper = require("../models/figurineDataMapper");
 
 const bookmarksController = {
   bookmarksPage: (req, res) => {
-    const bookmarks = req.session.bookmarks;
-    //console.log(req.session);
-    res.status(200).render("bookmark", {figurines: bookmarks});
+    let bookmarks = req.session.bookmarks;
+
+    if (req.session.bookmarks === undefined) {
+      req.session.bookmarks = [];
+    }
+
+    res.status(200).render("bookmarks", { figurines: bookmarks });
   },
+
   addBookmark: async (req, res, next) => {
     const { id } = req.params;
-    let bookmarks = req.session.bookmarks;
-    
-    bookmarks = [];
-    if (!bookmarks) {
+
+    if (req.session.bookmarks === undefined) {
+      req.session.bookmarks = [];
     }
 
     try {
       const figurine = await figurineDataMapper.findOneFigurineById(id);
-      bookmarks.push(figurine);
-      console.log(bookmarks);
-      console.log(bookmarks);
-      res.status(201).redirect('/bookmarks');
+      req.session.bookmarks.push(figurine);
+
+      res.redirect("/bookmarks");
+      
     } catch (error) {
       console.log(error);
+      return next();
     }
   },
-  // deleteBookmark: (req, res, next) => {
-  //   const { id } = req.params;
-  //   let bookmarks = req.session.bookmarks;
+  deleteBookmark: (req, res, next) => {
+    const { id } = req.params;
+    console.log(id);
 
-  //   const result = bookmarks.filter(bookmark => {
-  //     return bookmark.id !== id;
-  //   });
-
-  //   bookmarks = result;
-  // }
+    const result = req.session.bookmarks.filter(bookmark => {
+      return bookmark.id !== id;
+    });
+    console.log(result);
+    //req.session.bookmarks = result;
+    res.redirect("/bookmarks");
+    
+  }
 };
 
 module.exports = bookmarksController;

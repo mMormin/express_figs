@@ -7,12 +7,12 @@ const bookmarkController = require('./controllers/bookmarkController');
 const router = express.Router();
 
 router.get('/', homeController.homePage);
-router.get('/article/:name/:id', figurineController.articlePage);
+router.get('/figurine/:name/:id', figurineController.articlePage);
 
 // bookmarks
 router.get('/bookmarks', bookmarkController.bookmarksPage);
 router.get('/bookmarks/add/:id', bookmarkController.addBookmark);
-// router.get('/bookmarks/delete/:id', bookmarkController.deleteBookmark);
+router.get('/bookmarks/delete/:id', bookmarkController.deleteBookmark);
 
 router.use("*", (req, res) => {
     res.render("404");
