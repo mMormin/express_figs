@@ -35,8 +35,6 @@ const figurineMapper = {
 
     const result = await db.query(sqlQuery);
 
-    console.log(result.rows.length);
-
     if (!result.rowCount) {
       throw new Error("La catégorie n'a pas été trouvé !");
     }
@@ -51,8 +49,6 @@ const figurineMapper = {
     };
 
     const result = await db.query(sqlQuery);
-
-    console.log(result.rows.length);
 
     if (!result.rowCount) {
       throw new Error("La catégorie n'a pas été trouvé !");
