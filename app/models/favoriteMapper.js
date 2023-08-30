@@ -1,4 +1,4 @@
-const favoriteDataMapper = {
+const favoriteMapper = {
   findAllFavorites: (session) => {
     let favoriteListSession = session.favoriteList;
 
@@ -10,4 +10,4 @@ const favoriteDataMapper = {
   },
 };
 
-module.exports = favoriteDataMapper;
+module.exports = favoriteMapper;

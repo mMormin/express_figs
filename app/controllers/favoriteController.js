@@ -1,10 +1,10 @@
-const figurineDataMapper = require("../models/figurineDataMapper");
-const favoriteDataMapper = require("../models/favoriteDataMapper");
+const figurineMapper = require("../models/figurineMapper");
+const favoriteMapper = require("../models/favoriteMapper");
 
 const favoriteController = {
   favoritePage: (req, res) => {
     const session = req.session;
-    const favoriteList = favoriteDataMapper.findAllFavorites(session);
+    const favoriteList = favoriteMapper.findAllFavorites(session);
 
     res.status(200).render("favorite", { figurines: favoriteList });
   },
@@ -12,10 +12,10 @@ const favoriteController = {
   addFavorite: async (req, res, next) => {
     const { id } = req.params;
     const session = req.session;
-    const favoriteList = favoriteDataMapper.findAllFavorites(session);
+    const favoriteList = favoriteMapper.findAllFavorites(session);
 
     try {
-      const figurine = await figurineDataMapper.findOneFigurineById(id);
+      const figurine = await figurineMapper.findOneFigurineById(id);
 
       req.session.favoriteList = favoriteList;
       req.session.favoriteList.push(figurine);
@@ -30,7 +30,7 @@ const favoriteController = {
   deleteFavorite: (req, res) => {
     const { id } = req.params;
     const session = req.session;
-    const favoriteList = favoriteDataMapper.findAllFavorites(session);
+    const favoriteList = favoriteMapper.findAllFavorites(session);
     const favoriteIndex = favoriteList.findIndex((favorite) => favorite.id === id);
 
     req.session.favoriteList = favoriteList.splice(favoriteIndex, 1);

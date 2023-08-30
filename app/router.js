@@ -10,10 +10,13 @@ const router = express.Router();
 router.get("/", homeController.homePage);
 router.get("/figurine/:name/:id", figurineController.articlePage);
 
-// Favorite Routes
+// Favorites Routes
 router.get("/favorites", favoriteController.favoritePage);
 router.get("/favorites/add/:id", favoriteController.addFavorite);
 router.get("/favorites/delete/:id", favoriteController.deleteFavorite);
+
+// Categories Routes
+//router.get("/category?=:category", figurineController.articlesListPage);
 
 // Other Routes
 router.use("*", (req, res) => {
