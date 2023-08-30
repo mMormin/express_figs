@@ -1,18 +1,17 @@
 <%- include('partials/header') %>
-<%- include('partials/leftMenu') %>
 
 <div class="container container-main">
   <div class="row">
     <div class="col-lg-3">
       <h1 class="my-4">O'Fig</h1>
       <h5>Catégories</h5>
+      <%- include('partials/leftMenu') %>
     </div>
-    <!-- /.col-lg-3 -->
 
     <div class="col-lg-9">
       <div class="row">
         <div class="col-lg-6">
-          <img class="" src="./images/<%= figurine.name.toLowerCase() %>.png" alt="" />
+          <img class="" src="/images/<%= figurine.name %>.png" alt="" />
         </div>
 
         <div class="col-lg-6">

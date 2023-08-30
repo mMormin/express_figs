@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<main>
+  <% if (locals.error) { %>
+
+  <h1>Oops Erreur <%= locals.error.code %> ...</h1>
+  <p><%= locals.error.message %></p>
+
+  <% } %>
+
+  <h1>Oops Erreur 404 ...</h1>
+  <p>
+    La page que vous recherchez existe sans doute mais elle ne se trouve pas ici
+    !
+  </p>
+</main>
+<%- include('partials/footer') %>

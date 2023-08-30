@@ -6,40 +6,43 @@
       <h1 class="my-4">O'Fig</h1>
 
       <h5>Catégories</h5>
+
       <%- include('partials/leftMenu') %>
     </div>
 
     <div class="col-lg-9">
       <div class="row">
+        <% figurines.map(article => { %>
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <% figurines.map(article => { %>
-              <a href="/article/<%= article.id %>">
-                <img class="card-img-top" src="./images/<%= article.name %>.png" alt="" />
-                <div class="badge-category badge badge-pill badge-gentil">
-                  <%= article.category %>
-                </div>
-              </a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="/article/<%= article.id%>"><%= article.name %></a>
-                </h4>
-                <h5><%= article.price %></h5>
-                <p class="card-text">
-                  <%= article.description %>
-                </p>
+            <a href="/article/<%= article.name %>/<%= article.id %>">
+              <img
+                class="card-img-top"
+                src="/images/<%= article.name %>.png"
+                alt=""
+              />
+              <div class="badge-category badge badge-pill badge-gentil">
+                <%= article.category %>
               </div>
-              <div class="card-footer">
-                <small class="text-muted"
-                  >&#9733; &#9733; &#9733; &#9733; &#9734;</small
-                >
-                <a href="/bookmarks" class="link-add-bookmarks"
-                  >+ Ajouter aux favoris</a
-                >
-              </div>
-            <% }) %>
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="/article/<%= article.id%>"><%= article.name %></a>
+              </h4>
+              <h5><%= article.price %></h5>
+              <p class="card-text"><%= article.description %></p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"
+                >&#9733; &#9733; &#9733; &#9733; &#9734;</small
+              >
+              <a href="/bookmarks" class="link-add-bookmarks"
+                >+ Ajouter aux favoris</a
+              >
+            </div>
           </div>
         </div>
+        <% }) %>
       </div>
     </div>
   </div>
