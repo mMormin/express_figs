@@ -6,54 +6,25 @@
     <div class="col-lg-3">
       <h1 class="my-4">O'Fig</h1>
       <h5>Catégories</h5>
-      <div class="list-group">
-        <a
-          class="list-group-item d-flex justify-content-between align-items-center"
-          href="#"
-        >
-          Les gentils
-          <span class="badge badge-primary badge-pill">4</span>
-        </a>
-        <a
-          class="list-group-item d-flex justify-content-between align-items-center"
-          href="#"
-        >
-          Les méchants
-          <span class="badge badge-primary badge-pill">3</span>
-        </a>
-        <a
-          class="list-group-item d-flex justify-content-between align-items-center"
-          href="#"
-        >
-          Les animaux
-          <span class="badge badge-primary badge-pill">1</span>
-        </a>
-      </div>
     </div>
     <!-- /.col-lg-3 -->
 
     <div class="col-lg-9">
       <div class="row">
         <div class="col-lg-6">
-          <img class="" src="./images/aerith.png" alt="" />
+          <img class="" src="./images/<%= figurine.name.toLowerCase() %>.png" alt="" />
         </div>
 
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">
-                Aerith
-                <div class="badge badge-pill badge-gentil">Gentil</div>
+                <%= figurine.name %>
+                <div class="badge badge-pill badge-gentil"><%= figurine.category %></div>
               </h3>
-              <p class="card-text">Taille réelle : 35cm</p>
+              <p class="card-text">Taille réelle : <%= figurine.size %> cm</p>
               <p class="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam, porro sunt quis sed ut facere consequatur quidem
-                magni pariatur repellat eius? Incidunt voluptatem porro
-                exercitationem asperiores maiores voluptatibus necessitatibus.
-                Nobis fuga eaque aliquam quod, voluptatem minus illo
-                necessitatibus at placeat delectus quos distinctio natus ipsum
-                cumque amet repellat quo quidem.
+                <%= figurine.description %>
               </p>
               <p class="card-text">
                 3 Note moyenne : &#9733; &#9733; &#9733; &#9733; &#9734;
@@ -62,7 +33,7 @@
                   >Détails des avis</a
                 >
               </p>
-              <h5>$24.99</h5>
+              <h5>$ <%= figurine.price %></h5>
               <p class="card-text">
                 <a href="#" class="link-add-bookmarks">+ Ajouter aux favoris</a>
               </p>

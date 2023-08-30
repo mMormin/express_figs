@@ -1,11 +1,11 @@
-const mainController = {
-  homePage: (req, res ) => {
-    res.status(200).render("home");
-  },
+const figurineDataMapper = require('../models/figurineDataMapper');
 
-  articlePage: (req, res) => {
-    res.status(200).render("article");
-  },
+const mainController = {
+  homePage: async (req, res, next) => {
+    const figurines = await figurineDataMapper.findAllFigurines();
+
+    res.status(200).render('home', { figurines });
+  }
 };
 
 module.exports = mainController;
