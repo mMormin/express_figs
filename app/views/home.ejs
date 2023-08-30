@@ -1,42 +1,39 @@
-<%- include('partials/header') %>
+<%- include('partials/header') %>figurine
 
 <div class="container container-main">
   <div class="row">
     <div class="col-lg-3">
       <h1 class="my-4">O'Fig</h1>
-
-      <h5>Catégories</h5>
-
       <%- include('partials/leftMenu') %>
     </div>
 
     <div class="col-lg-9">
       <div class="row">
-        <% figurines.map(article => { %>
+        <% figurines.map(figurine => { %>
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <a href="/article/<%= article.name %>/<%= article.id %>">
+            <a href="/figurine/<%= figurine.name %>/<%= figurine.id %>">
               <img
                 class="card-img-top"
-                src="/images/<%= article.name %>.png"
+                src="/images/<%= figurine.name %>.png"
                 alt=""
               />
               <div class="badge-category badge badge-pill badge-gentil">
-                <%= article.category %>
+                <%= figurine.category %>
               </div>
             </a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="/article/<%= article.name%>/<%= article.id%>"><%= article.name %></a>
+                <a href="/figurine/<%= figurine.name%>/<%= figurine.id%>"><%= figurine.name %></a>
               </h4>
-              <h5><%= article.price %></h5>
-              <p class="card-text"><%= article.description %></p>
+              <h5><%= figurine.price %></h5>
+              <p class="card-text"><%= figurine.description %></p>
             </div>
             <div class="card-footer">
               <small class="text-muted"
                 >&#9733; &#9733; &#9733; &#9733; &#9734;</small
               >
-              <a href="/bookmarks" class="link-add-bookmarks"
+              <a href="/bookmarks/add/<%= figurine.id %>" class="link-add-bookmarks"
                 >+ Ajouter aux favoris</a
               >
             </div>

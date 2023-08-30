@@ -1,5 +1,4 @@
 <%- include('partials/header') %>
-<%- include('partials/leftMenu') %>
 
 <div class="container container-main">
   <div class="row">
@@ -13,26 +12,28 @@
           <th></th>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img
-                class="img-thumbnail img-cart-list"
-                src="./images/tifa.png"
-                alt=""
-              />
-              <div class="item-description">
-                <h5 class="item-title">Tifa</h5>
-              </div>
-            </td>
-
-            <td>
-              <p class="item-subtotal">$24.99</p>
-            </td>
-
-            <td>
-              <a href="#">Enlever de la liste</a>
-            </td>
-          </tr>
+          <% for (const figurine of figurines) {%>
+            <tr>
+              <td>
+                <img
+                  class="img-thumbnail img-cart-list"
+                  src="/images/<%= figurine.name %>.png"
+                  alt=""
+                />
+                <div class="item-description">
+                  <h5 class="item-title"><%= figurine.title %></h5>
+                </div>
+              </td>
+  
+              <td>
+                <p class="item-subtotal"><%= figurine.price %></p>
+              </td>
+  
+              <td>
+                <a href="/bookmarks/delete/<%= figurine.id %>">Enlever de la liste</a>
+              </td>
+            </tr>
+          <% } %>
 
           <tr>
             <td>
