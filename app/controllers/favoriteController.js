@@ -29,12 +29,8 @@ const favoriteController = {
   },
   deleteFavorite: (req, res) => {
     const { id } = req.params;
-    const session = req.session;
-    const favoriteList = favoriteMapper.findAllFavorites(session);
-    const favoriteIndex = favoriteList.findIndex((favorite) => favorite.id === id);
-
-    req.session.favoriteList = favoriteList.splice(favoriteIndex, 1);
-
+    req.session.favoriteList.splice(id, 1);
+    console.log(req.session.favoriteList);
     res.redirect("/favorites");
   },
 };

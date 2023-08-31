@@ -3,10 +3,10 @@ const favoriteMapper = {
     let favoriteListSession = session.favoriteList;
 
     if (favoriteListSession === undefined) {
-      favoriteList = [];
+      favoriteListSession = [];
     }
 
-    return favoriteList;
+    return favoriteListSession;
   },
 };
 
