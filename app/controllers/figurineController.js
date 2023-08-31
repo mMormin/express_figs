@@ -11,7 +11,6 @@ const figurineController = {
 
     try {
       const results = await Promise.allSettled(promises);
-
       const [{ value: figurine }, { value: reviews }, {value : categories}] = results;
 
       res
@@ -23,6 +22,7 @@ const figurineController = {
           goodNbr: categories[1].count,
           animalNbr: categories[2].count,
         });
+
     } catch (error) {
       res.locals.error = { code: 404, message: error };
 

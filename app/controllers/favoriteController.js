@@ -20,6 +20,7 @@ const favoriteController = {
     res.redirect("/favoris");
   },
   deleteFavorite: (req, res) => {
+<<<<<<< HEAD
     const { id: figurineId } = req.params;
 
     req.session.favoris = req.session.favoris.filter(
@@ -27,6 +28,12 @@ const favoriteController = {
     );
 
     res.redirect("/favoris");
+=======
+    const { id } = req.params;
+    req.session.favoriteList.splice(id, 1);
+    console.log(req.session.favoriteList);
+    res.redirect("/favorites");
+>>>>>>> 071aa568da7096ac139b8cf1165884a99ecc29a0
   },
 };
 
