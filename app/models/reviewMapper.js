@@ -1,10 +1,10 @@
 const db = require("../db.js");
 
 const reviewMapper = {
-  findAllReviewsById: async (id) => {
+  getAllReviewsByFigurineId: async (figurineid) => {
     const sqlQuery = {
       text: "SELECT * FROM review WHERE figurine_id = $1",
-      values: [id],
+      values: [figurineid],
     };
   
     const reviews = await db.query(sqlQuery);

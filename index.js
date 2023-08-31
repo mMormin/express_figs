@@ -14,11 +14,18 @@ app.use(express.static("./public"));
 app.use(
   session({
     secret: "keyboard cat",
-    resave: false,
     saveUninitialized: true,
+    resave: true,
     cookie: { secure: false, maxAge: 60 * 60 * 1000 },
   })
 );
+
+app.use((req, res, next) => {
+  if (!req.session.favoris) {
+    req.session.favoris = []
+  }
+  next()
+})
 
 app.use(router);
 

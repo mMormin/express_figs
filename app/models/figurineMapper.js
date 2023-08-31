@@ -1,7 +1,7 @@
 const db = require("../db.js");
 
 const figurineMapper = {
-  findAllFigurines: async () => {
+  getAllFigurines: async () => {
     const sqlQuery = "SELECT * FROM figurine;";
     const figurines = await db.query(sqlQuery);
 
@@ -12,65 +12,44 @@ const figurineMapper = {
     return figurines.rows;
   },
 
-  findOneFigurineById: async (id) => {
+  getOneFigurineById: async (id) => {
     const sqlQuery = {
-      text: "SELECT * FROM figurine WHERE id = $1",
+      text: "SELECT * FROM figurine WHERE id = $1;",
       values: [id],
     };
 
     const figurine = await db.query(sqlQuery);
 
-    if (!figurine.rowCount) {
+    if (!figurine) {
       throw new Error("Cette figurine n'a pas été trouvée !");
     }
 
     return figurine.rows[0];
   },
 
-  findAllGoodsInCategory: async () => {
-    const sqlQuery = {
-      text: "SELECT * FROM figurine WHERE category = $1",
-      values: ["Gentil"],
-    };
+  getAllCategories: async () => {
+    const categories = await db.query(
+      "SELECT category, COUNT(*) AS count FROM figurine GROUP BY category;"
+    );
 
-    const result = await db.query(sqlQuery);
-
-    if (!result.rowCount) {
-      throw new Error("La catégorie n'a pas été trouvé !");
+    if (!categories.rowCount) {
+      throw new Error("Aucune catégorie trouvée !");
     }
 
-    return result.rows.length;
+    return categories.rows;
   },
 
-  findAllEvilsInCategory: async () => {
+  getAllFigurinesByCategory: async (category) => {
+
     const sqlQuery = {
-      text: "SELECT * FROM figurine WHERE category = $1",
-      values: ["Méchant"],
+      text: "SELECT * FROM figurine WHERE category = $1;",
+      values: [`${category}`],
     };
 
-    const result = await db.query(sqlQuery);
+    const figurines = await db.query(sqlQuery);
 
-    if (!result.rowCount) {
-      throw new Error("La catégorie n'a pas été trouvé !");
-    }
-
-    return result.rows.length;
-  },
-
-  findAllAnimalsInCategory: async () => {
-    const sqlQuery = {
-      text: "SELECT * FROM figurine WHERE category = $1",
-      values: ["Animal"],
-    };
-
-    const result = await db.query(sqlQuery);
-
-    if (!result.rowCount) {
-      throw new Error("La catégorie n'a pas été trouvé !");
-    }
-
-    return result.rows.length;
-  },
+    return figurines.rows;
+  }
 };
 
 module.exports = figurineMapper;

@@ -6,17 +6,19 @@ const favoriteController = require("./controllers/favoriteController");
 
 const router = express.Router();
 
-// Defaults Routes
+// Home
 router.get("/", homeController.homePage);
-router.get("/figurine/:name/:id", figurineController.articlePage);
+// Categories
+router.get("/category=:category", homeController.categoriesHomePage);
 
-// Favorites Routes
-router.get("/favorites", favoriteController.favoritePage);
-router.get("/favorites/add/:id", favoriteController.addFavorite);
-router.get("/favorites/delete/:id", favoriteController.deleteFavorite);
+// Figurine
+router.get("/figurine/:name/:id", figurineController.figurinePage);
 
-// Categories Routes
-//router.get("/category?=:category", figurineController.articlesListPage);
+// Favoris
+router.get("/favoris", favoriteController.favoritePage);
+router.get("/favoris/add/:id", favoriteController.addFavorite);
+router.get("/favoris/delete/:id", favoriteController.deleteFavorite);
+
 
 // Other Routes
 router.use("*", (req, res) => {
