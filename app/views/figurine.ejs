@@ -27,13 +27,18 @@
               <p class="card-text">
                 3 Note moyenne : &#9733; &#9733; &#9733; &#9733; &#9734;
                 <br />
-                <a href="#" data-toggle="modal" data-target="#reviewsModal"
-                  >Détails des avis</a
-                >
+                <a href="#" data-toggle="modal" data-target="#reviewsModal">
+                  Détails des avis
+                </a>
               </p>
               <h5>$ <%= figurine.price %></h5>
               <p class="card-text">
-                <a href="#" class="link-add-bookmarks">+ Ajouter aux favoris</a>
+                <a
+                  href="/favoris/add/<%= figurine.id %>"
+                  class="link-add-bookmarks"
+                >
+                  + Ajouter aux favoris
+                </a>
               </p>
             </div>
           </div>
