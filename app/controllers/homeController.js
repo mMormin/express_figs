@@ -1,6 +1,6 @@
 const figurineMapper = require("../models/figurineMapper");
 
-const mainController = {
+const homeController = {
   homePage: async (req, res, next) => {
     const figurinesPromise = figurineMapper.getAllFigurines();
     const categoriesPromise = figurineMapper.getAllCategories();
@@ -12,9 +12,7 @@ const mainController = {
 
       res.status(200).render("home", {
         figurines,
-        evilNbr: categories[0].count,
-        goodNbr: categories[1].count,
-        animalNbr: categories[2].count,
+        categories,
       });
     } catch (error) {
       res.locals.error = { code: 404, message: error };
@@ -33,20 +31,16 @@ const mainController = {
       const results = await Promise.allSettled(promises);
       const [{ value: figurines }, { value: categories }] = results;
 
-    console.log(figurines);
-
       res.status(200).render("home", {
         figurines,
-        evilNbr: categories[0].count,
-        goodNbr: categories[1].count,
-        animalNbr: categories[2].count,
+        categories,
       });
     } catch (error) {
       res.locals.error = { code: 404, message: error };
 
       return next();
     }
-  }
+  },
 };
 
-module.exports = mainController;
+module.exports = homeController;

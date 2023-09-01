@@ -18,9 +18,7 @@ const figurineController = {
         .render("figurine", {
           figurine,
           reviews,
-          evilNbr: categories[0].count,
-          goodNbr: categories[1].count,
-          animalNbr: categories[2].count,
+          categories
         });
 
     } catch (error) {

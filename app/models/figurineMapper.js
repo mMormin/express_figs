@@ -2,8 +2,7 @@ const db = require("../db.js");
 
 const figurineMapper = {
   getAllFigurines: async () => {
-    const sqlQuery = "SELECT * FROM figurine;";
-    const figurines = await db.query(sqlQuery);
+    const figurines = await db.query("SELECT * FROM figurine;");
 
     if (!figurines.rowCount) {
       throw new Error("Aucune figurine trouvée !");
@@ -29,7 +28,7 @@ const figurineMapper = {
 
   getAllCategories: async () => {
     const categories = await db.query(
-      "SELECT category, COUNT(*) AS count FROM figurine GROUP BY category;"
+      "SELECT category AS name, COUNT(*) FROM figurine GROUP BY category;"
     );
 
     if (!categories.rowCount) {
