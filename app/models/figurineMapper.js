@@ -48,6 +48,17 @@ const figurineMapper = {
     const figurines = await db.query(sqlQuery);
 
     return figurines.rows;
+  },
+
+  getAllFigurinesWithAverageNotes: async () => {
+    const sqlQuery = `SELECT figurine.*, ROUND(AVG(r.note)) AS note 
+                      FROM figurine
+                      LEFT JOIN review AS r
+                      ON figurine.id = r.figurine_id
+                      GROUP BY figurine.id
+                      ORDER BY figurine.id`;
+    const figurines = await db.query(sqlQuery);
+    return figurines.rows;
   }
 };
 

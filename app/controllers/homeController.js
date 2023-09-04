@@ -3,21 +3,13 @@ const reviewMapper = require("../models/reviewMapper");
 
 const homeController = {
   homePage: async (req, res, next) => {
-    const figurinesPromise = figurineMapper.getAllFigurines();
+    const figurinesPromise = figurineMapper.getAllFigurinesWithAverageNotes();
     const categoriesPromise = figurineMapper.getAllCategories();
-    const reviewsPromise = reviewMapper.getAllAverageNotes();
-    const promises = [figurinesPromise, categoriesPromise, reviewsPromise];
+    const promises = [figurinesPromise, categoriesPromise];
 
     try {
       const results = await Promise.allSettled(promises);
-      const [{ value: figurines }, { value: categories }, {value: averageNotes}] = results;
-      averageNotes.map(note => {
-        figurines.map(figurine => {
-          if (note.figurine_id == figurine.id) {
-            figurine["note"] = note.note;
-          }
-        })
-      })
+      const [{ value: figurines }, { value: categories }] = results;
       res.status(200).render("home", {
         figurines,
         categories
