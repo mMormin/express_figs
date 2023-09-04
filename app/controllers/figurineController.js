@@ -6,18 +6,19 @@ const figurineController = {
     const { id: figurineId } = req.params;
     const figurinePromise = figurineMapper.getOneFigurineById(figurineId);
     const reviewsPromise = reviewMapper.getAllReviewsByFigurineId(figurineId);
+    const reviewsAverageNote = reviewMapper.getAverageNote(figurineId);
     const categoriesPromise = figurineMapper.getAllCategories();
-    const promises = [figurinePromise, reviewsPromise, categoriesPromise];
+    const promises = [figurinePromise, reviewsPromise, reviewsAverageNote, categoriesPromise];
 
     try {
       const results = await Promise.allSettled(promises);
-      const [{ value: figurine }, { value: reviews }, {value : categories}] = results;
-
+      const [{ value: figurine }, { value: reviews }, {value: averageNote}, {value: categories}] = results;
       res
         .status(200)
         .render("figurine", {
           figurine,
           reviews,
+          averageNote,
           categories
         });
 

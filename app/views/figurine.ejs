@@ -25,7 +25,13 @@
               <p class="card-text">Taille réelle : <%= figurine.size %> cm</p>
               <p class="card-text"><%= figurine.description %></p>
               <p class="card-text">
-                3 Note moyenne : &#9733; &#9733; &#9733; &#9733; &#9734;
+                Note moyenne : <% for( let i = 1; i <= 5; i++ ) { %>
+                  <% if (i <= averageNote) { %>
+                    &#9733;
+                  <% } else { %>
+                    &#9734;
+                  <% } %>
+                <% } %>
                 <br />
                 <a href="#" data-toggle="modal" data-target="#reviewsModal">
                   Détails des avis
